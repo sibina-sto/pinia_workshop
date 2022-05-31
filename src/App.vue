@@ -10,7 +10,7 @@ import products from "@/data/products.json";
     <ul class="sm:flex flex-wrap lg:flex-nowrap gap-5">
       <ProductCard
         v-for="product in products"
-        :key="product.name"
+        :key="product.id"
         :product="product"
       />
     </ul>
