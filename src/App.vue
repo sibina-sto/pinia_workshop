@@ -1,9 +1,12 @@
 <script setup>
 import TheHeader from "@/components/TheHeader.vue";
 import ProductCard from "@/components/ProductCard.vue";
-import { storeToRefs } from "pinia";
 import { useProductStore } from "@/stores/ProductStore";
-const { products } = storeToRefs(useProductStore());
+import { useCartStore } from "@/stores/CartStore";
+const productStore = useProductStore();
+const { addItem } = useCartStore();
+
+productStore.fill();
 </script>
 
 <template>
@@ -11,9 +14,10 @@ const { products } = storeToRefs(useProductStore());
     <TheHeader />
     <ul class="sm:flex flex-wrap lg:flex-nowrap gap-5">
       <ProductCard
-        v-for="product in products"
+        v-for="product in productStore.products"
         :key="product.id"
         :product="product"
+        @add-to-cart="addItem(product.id, $event)"
       />
     </ul>
   </div>
