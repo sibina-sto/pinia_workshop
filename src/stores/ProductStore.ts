@@ -1,3 +1,9 @@
 import { defineStore } from "pinia";
-
-export const useProductStore = defineStore("ProductStore", {});
+import products from "@/data/products.json";
+export const useProductStore = defineStore("ProductStore", {
+  state: () => {
+    return {
+      products,
+    };
+  },
+});

@@ -2,6 +2,11 @@
 // imports
 import { ref } from "vue";
 import CartItem from "./CartItem.vue";
+import { useProductStore } from "@/stores/ProductStore";
+import { useCartStore } from "@/stores/CartStore";
+import { storeToRefs } from "pinia";
+const { products } = storeToRefs(useProductStore());
+const { items: cartItems } = storeToRefs(useCartStore());
 
 // data
 const active = ref(false);
@@ -18,14 +23,10 @@ const active = ref(false);
       <div>
         <ul class="items-in-cart">
           <CartItem
-            :product="{ id: `123`, name: 'Dried Pineapple', price: 5 }"
-            :count="5"
-            @updateCount=""
-            @clear=""
-          />
-          <CartItem
-            :product="{ id: `321`, name: 'Pineapple Gum', price: 3 }"
-            :count="5"
+            v-for="item in cartItems"
+            :key="item.id"
+            :product="products.find((p) => item.id === p.id)"
+            :count="item.count"
             @updateCount=""
             @clear=""
           />
