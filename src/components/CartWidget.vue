@@ -18,7 +18,7 @@ const active = ref(false);
       <div>
         <ul class="items-in-cart">
           <CartItem
-            :product="{ id: `123`,  name: 'Dried Pineapple', price: 5 }"
+            :product="{ id: `123`, name: 'Dried Pineapple', price: 5 }"
             :count="5"
             @updateCount=""
             @clear=""
