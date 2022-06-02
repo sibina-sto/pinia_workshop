@@ -9,9 +9,9 @@ export const useProductStore = defineStore("ProductStore", {
   getters: {
     count: (state) => state.products.length,
     doubleCount: (state) => state.count * 2,
-    productByName(state) {
-      return function (name) {
-        return state.products.find((product) => product.name === name);
+    productById(state) {
+      return function (id: string) {
+        return state.products.find((product) => product.id === id);
       };
     },
   },

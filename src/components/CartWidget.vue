@@ -6,7 +6,7 @@ import { useProductStore } from "@/stores/ProductStore";
 import { useCartStore } from "@/stores/CartStore";
 import { storeToRefs } from "pinia";
 const { products } = storeToRefs(useProductStore());
-const { items: cartItems, count, isEmpty } = storeToRefs(useCartStore());
+const { items: cartItems, count, isEmpty, total } = storeToRefs(useCartStore());
 
 // data
 const active = ref(false);
@@ -32,7 +32,7 @@ const active = ref(false);
           />
         </ul>
         <div class="flex justify-end text-2xl mb-5">
-          Total: <strong>$40</strong>
+          Total: <strong>${{ total }}</strong>
         </div>
         <div class="flex justify-end">
           <AppButton class="secondary mr-2">Clear Cart</AppButton>
