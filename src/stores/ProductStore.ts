@@ -6,6 +6,15 @@ export const useProductStore = defineStore("ProductStore", {
       products: [] as Product[],
     };
   },
+  getters: {
+    count: (state) => state.products.length,
+    doubleCount: (state) => state.count * 2,
+    productByName(state) {
+      return function (name) {
+        return state.products.find((product) => product.name === name);
+      };
+    },
+  },
   actions: {
     async fill() {
       const res = await fetch("/products.json");

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import TheHeader from "@/components/TheHeader.vue";
 import ProductCard from "@/components/ProductCard.vue";
 import { useProductStore } from "@/stores/ProductStore";
