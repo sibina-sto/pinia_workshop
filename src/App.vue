@@ -5,6 +5,18 @@ import { useProductStore } from "@/stores/ProductStore";
 import { useCartStore } from "@/stores/CartStore";
 const productStore = useProductStore();
 const { addItem } = useCartStore();
+const cartStore = useCartStore();
+cartStore.$onAction(({ name, after }) => {
+  if (name !== "addItem") return;
+  after((count) => alert(`You've added ${count} items to the cart`));
+});
+cartStore.$subscribe((mutation, state) => {
+  localStorage.setItem("cartState", JSON.stringify(state));
+});
+const savedCart = localStorage.getItem("cartState");
+if (savedCart) {
+  cartStore.$state = JSON.parse(savedCart);
+}
 
 productStore.fill();
 </script>

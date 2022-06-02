@@ -31,6 +31,7 @@ export const useCartStore = defineStore("CartStore", {
       } else {
         this.items.push({ id: itemId, count });
       }
+      return count;
     },
   },
 });
