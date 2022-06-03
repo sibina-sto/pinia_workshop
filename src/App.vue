@@ -3,6 +3,9 @@ import TheHeader from "@/components/TheHeader.vue";
 import ProductCard from "@/components/ProductCard.vue";
 import { useProductStore } from "@/stores/ProductStore";
 import { useCartStore } from "@/stores/CartStore";
+import { useCounterStore } from "./stores/CounterStore";
+
+const counter = useCounterStore();
 const productStore = useProductStore();
 const { addItem } = useCartStore();
 const cartStore = useCartStore();
@@ -17,6 +20,13 @@ productStore.fill();
 <template>
   <div class="container">
     <TheHeader />
+    <AppButton @click="counter.increment"
+      >Increment {{ counter.count }}</AppButton
+    >
+    <AppButton @click="counter.decrement"
+      >Decrement {{ counter.count }}</AppButton
+    >
+    <br /><br />
     <AppButton @click="cartStore.undo">Undo</AppButton>
     <AppButton @click="cartStore.redo">Redo</AppButton>
     <ul class="sm:flex flex-wrap lg:flex-nowrap gap-5">
