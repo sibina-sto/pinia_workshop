@@ -3,6 +3,7 @@ import type { CartItem } from "@/types";
 import { useProductStore } from "./ProductStore";
 
 export const useCartStore = defineStore("CartStore", {
+  localStorage: true,
   state: () => {
     return {
       items: [] as CartItem[],

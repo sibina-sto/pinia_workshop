@@ -10,13 +10,6 @@ cartStore.$onAction(({ name, after }) => {
   if (name !== "addItem") return;
   after((count) => alert(`You've added ${count} items to the cart`));
 });
-cartStore.$subscribe((mutation, state) => {
-  localStorage.setItem("cartState", JSON.stringify(state));
-});
-const savedCart = localStorage.getItem("cartState");
-if (savedCart) {
-  cartStore.$state = JSON.parse(savedCart);
-}
 
 productStore.fill();
 </script>
@@ -24,6 +17,8 @@ productStore.fill();
 <template>
   <div class="container">
     <TheHeader />
+    <AppButton @click="cartStore.undo">Undo</AppButton>
+    <AppButton @click="cartStore.redo">Redo</AppButton>
     <ul class="sm:flex flex-wrap lg:flex-nowrap gap-5">
       <ProductCard
         v-for="product in productStore.products"
